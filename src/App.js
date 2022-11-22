@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Feed from "./Feed";
+import SignInAndLogin from "./SignInAndLogin";
+import { auth } from "./firebase";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { ToastContainer, Zoom } from "react-toastify";
 
 function App() {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      // setLoading(false);
+    });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <ToastContainer transition={Zoom} />
+      <BrowserRouter>
+        <Routes>
+          <Route path={`/`} element={<Feed />} />
+          <Route path={`/Login`} element={<SignInAndLogin />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
