@@ -15,18 +15,15 @@ app.post("/api", async (req, res) => {
     headers: {
       "TRN-Api-Key": "2d565316-ddf9-4e2e-9842-5c6f92e0f84d",
       // "Content-Type": "application/x-www-form-urlencoded",
-      //  "application/json;charset=utf-8",
-
+      "Content-Type": "application/json",
       // "Access-Control-Allow-Origin": "*",
     },
-    decompress: true,
     // mode: "no-cors",
   };
 
   const axiosResponse = await axiosBase.get(url, config);
   console.log("axiosResponse", axiosResponse.data);
-  console.log("axiosResponse", axiosResponse.config);
-  res.json(axiosResponse.data);
+  res.json(axiosResponse.data,encoding="utf-8");
 
   // axiosBase
   //   .get(url, config)

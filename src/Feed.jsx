@@ -35,7 +35,8 @@ export default function Feed() {
     notify("ログアウトしました");
   };
   const handleClick = async () => {
-    const jsonData = await fetch("http://localhost:8000/", {
+    // http://localhost:8000/
+    const jsonData = await fetch("http://localhost:8000/api", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -137,7 +138,7 @@ export default function Feed() {
     });
 
   return (
-    <div className="relative flex flex-col relative items-center justify-center pb-10 bg-dark-900">
+    <div className="relative flex flex-col items-center justify-center pb-10 bg-dark-900">
       <div className="w-full ">
         <img className="w-full h-80 bg-cover" src={bgApexImage} />
       </div>
